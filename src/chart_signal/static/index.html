@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>AI Chart Signal Lab</title>
+  <style>
+    :root{font-family:Inter,system-ui,sans-serif;color:#eaf2ff;background:#07111f}body{margin:0;min-height:100vh;background:radial-gradient(circle at 75% 0,#17355c 0,transparent 38%),#07111f}.wrap{max-width:1020px;margin:auto;padding:56px 24px}.eyebrow{color:#75a7ff;letter-spacing:.2em;font-weight:700}.hero{font-size:clamp(42px,7vw,76px);line-height:1;margin:18px 0}.sub{color:#9db0c9;max-width:660px;font-size:18px;line-height:1.6}.grid{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin-top:38px}.card{background:#0c192b;border:1px solid #233b5d;border-radius:22px;padding:24px;box-shadow:0 20px 50px #0005}label{display:block;color:#9db0c9;margin:14px 0 6px}input,button{width:100%;box-sizing:border-box;border-radius:10px;padding:13px;border:1px solid #355071;background:#081321;color:white}button{margin-top:18px;background:#387cff;border:0;font-weight:800;cursor:pointer}.signal{font-size:36px;font-weight:900;margin:8px 0}.BUY{color:#47e6a1}.SELL{color:#ff6b84}.NO_TRADE{color:#ffcb6b}.metric{display:flex;justify-content:space-between;padding:9px 0;border-bottom:1px solid #1e304a}.muted{color:#879ab4;font-size:14px}pre{white-space:pre-wrap;color:#aec8eb}@media(max-width:760px){.grid{grid-template-columns:1fr}}
+  </style>
+</head>
+<body><main class="wrap">
+  <div class="eyebrow">GUARDRAILED MULTIMODAL API</div><h1 class="hero">Chart Signal Lab</h1>
+  <p class="sub">Upload a chart screenshot. The API validates model output, counts independent confirmations and returns <b>NO_TRADE</b> when the setup is weak or inconsistent.</p>
+  <section class="grid"><div class="card">
+    <label>Symbol</label><input id="symbol" value="XAUUSD"><label>Timeframe</label><input id="timeframe" value="H1"><label>Chart screenshot</label><input id="file" type="file" accept="image/*"><button id="run">Analyze screenshot</button><p class="muted">Demo mode is deterministic and makes no real market prediction.</p>
+  </div><div class="card" id="result"><div class="muted">RESULT</div><div class="signal">Waiting for image</div></div></section>
+</main><script>
+const out=document.querySelector('#result');document.querySelector('#run').onclick=async()=>{const f=document.querySelector('#file').files[0];if(!f){out.innerHTML='<div class="signal NO_TRADE">Select an image</div>';return}out.innerHTML='<div class="signal">Analyzing…</div>';try{const q=new URLSearchParams({symbol:document.querySelector('#symbol').value,timeframe:document.querySelector('#timeframe').value});const r=await fetch('/v1/analyze?'+q,{method:'POST',headers:{'Content-Type':f.type||'application/octet-stream'},body:f});const d=await r.json();if(!r.ok)throw Error(d.detail||'Request failed');out.innerHTML=`<div class="muted">RESULT</div><div class="signal ${d.direction}">${d.direction}</div><div class="metric"><span>Confidence</span><b>${Math.round(d.confidence*100)}%</b></div><div class="metric"><span>Entry</span><b>${d.entry??'—'}</b></div><div class="metric"><span>Stop / Target</span><b>${d.stop_loss??'—'} / ${d.take_profit??'—'}</b></div><div class="metric"><span>Risk / Reward</span><b>${d.risk_reward??'—'}</b></div><p>${d.explanation}</p><p class="muted">${d.disclaimer}</p>`}catch(e){out.innerHTML=`<div class="signal NO_TRADE">Error</div><pre>${e.message}</pre>`}}
+</script></body></html>
+
