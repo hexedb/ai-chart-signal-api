@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900">
+ <defs><linearGradient id="b" x2="1" y2="1"><stop stop-color="#050b18"/><stop offset="1" stop-color="#16294e"/></linearGradient><linearGradient id="l"><stop stop-color="#44e2a8"/><stop offset="1" stop-color="#5f8cff"/></linearGradient></defs>
+ <rect width="1600" height="900" rx="40" fill="url(#b)"/>
+ <text x="110" y="155" fill="#779cff" font-family="Segoe UI,Arial" font-size="32" font-weight="700" letter-spacing="6">MULTIMODAL AI · FASTAPI · GUARDRAILS</text>
+ <text x="110" y="285" fill="white" font-family="Segoe UI,Arial" font-size="78" font-weight="800">AI Chart Signal API</text>
+ <text x="110" y="360" fill="#a6b5d1" font-family="Segoe UI,Arial" font-size="32">Structured analysis with a deterministic NO_TRADE policy</text>
+ <g transform="translate(120 485)"><path d="M0 210L120 155 230 185 350 80 475 120 610 30 760 75 900 5" fill="none" stroke="url(#l)" stroke-width="12"/><g fill="#43dfa7"><circle cx="350" cy="80" r="13"/><circle cx="610" cy="30" r="13"/><circle cx="900" cy="5" r="13"/></g><path d="M0 245h950" stroke="#334966" stroke-width="2"/></g>
+ <rect x="1120" y="450" width="350" height="300" rx="28" fill="#0b172b" stroke="#4e76bc" stroke-width="2"/>
+ <text x="1170" y="520" fill="#91a9cb" font-family="Segoe UI,Arial" font-size="24">AI MARKET SCAN</text>
+ <text x="1170" y="595" fill="#44e2a8" font-family="Segoe UI,Arial" font-size="48" font-weight="800">BUY</text>
+ <text x="1170" y="650" fill="white" font-family="Consolas,monospace" font-size="25">Confidence   84%</text>
+ <text x="1170" y="700" fill="#ffcf70" font-family="Consolas,monospace" font-size="23">fallback: NO_TRADE</text>
+</svg>
+
